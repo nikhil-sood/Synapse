@@ -5,7 +5,7 @@ select DATE_REP, CASES,
 from openrowset(bulk 'https://pandemicdatalake.blob.core.windows.net/public/curated/covid-19/ecdc_cases/latest/ecdc_cases.parquet',
                 format='parquet') as a
 where geo_id = 'UK'
-and date_rep between '2023-03-03' and '2023-06-06'
+and date_rep between '2020-03-03' and '2020-06-06'
 ),
 data as ( select x = CAST(CASES AS BIGINT), y = CAST(DEATHS AS INT) FROM raw_data )
 select PearsonsR = (Avg(x * y) - (Avg(x) * Avg(y))) / (StDevP(x) * StDevP(y))
